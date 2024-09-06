@@ -388,6 +388,7 @@ public class ManifestFiles {
   private static ContentCacheManager createContentCacheManager(Map<String, String> properties, String className) {
     try {
       Object caches = DynMethods.builder("create")
+              .loader(ManifestFiles.class.getClassLoader())
               .impl(className, Map.class)
               .buildStaticChecked()
               .invoke(properties);
